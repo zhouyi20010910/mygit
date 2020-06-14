@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="" >
+  <resultMap id="BaseResultMap" type="" >
+    <id column="" property=""/>
+    <result column="" property=""/>
+    <association property=""  javaType="类名"> 
+    	 <id column="" property="" />
+         <result column="" property=""/>
+    </association>
+  </resultMap>
+  
+  <sql id="select">
+      select * from xxx  join ...on...
+  </sql>
+ 
+  <select id="selectAll"  resultMap="BaseResultMap">
+       <include refid="select"/>
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	   <include refid="select"/> where id=#{id}
+  </select> 
+  <select id="selectList" resultMap="BaseResultMap" >
+		  <include refid="select" />
+		  <where>
+		     and goods_sort.id=#{sortid}
+		  </where>
+		  order by ${orderby}
+		  limit #{begin},#{row}
+  </select>
+  
+  <select id="selectCount"  resultType="int" >
+        select count(1) from xx 
+		<where>
+     		 and sortid in(goods_sort.id=#{sortid})
+	    </where>
+  </select>
+  
+  
+  <delete id="delete" parameterType="java.lang.Integer" >
+  </delete>
+  
+  <insert id="insert" parameterType=""  keyProperty="weiboid"   useGeneratedKeys="true">
+  </insert>
+
+  <update id="update" parameterType="" >
+  </update>
+</mapper>
